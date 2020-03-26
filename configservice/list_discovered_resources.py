@@ -12,10 +12,8 @@ if os.path.isfile(config_file):
     os.environ['AWS_CONFIG_FILE'] = config_file
 
 client = boto3.client('config')
-response = client.get_discovered_resource_counts()
-resource_counts = response['resourceCounts']
+response = client.list_discovered_resources(resourceType='AWS::EC2::Instance')
+resource_ids = response['resourceIdentifiers']
 
-for resource_count in resource_counts:
-    print(resource_count['resourceType'])
-    resource_list = list(resource_count.values())
-    print(resource_list)
+for resource_id in resource_ids:
+    print(resource_id['resourceId'])
