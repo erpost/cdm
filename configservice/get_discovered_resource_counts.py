@@ -1,6 +1,6 @@
 import boto3
 import os
-from pprint import pprint
+
 
 credentials_file = os.path.expanduser('~/.aws/cto/credentials')
 config_file = os.path.expanduser('~/.aws/cto/config')
