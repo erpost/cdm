@@ -12,8 +12,9 @@ if os.path.isfile(config_file):
     os.environ['AWS_CONFIG_FILE'] = config_file
 
 client = boto3.client('config')
-response = client.list_discovered_resources(resourceType='AWS::EC2::Instance')
+resource_type = 'AWS::EC2::Instance'
+response = client.list_discovered_resources(resourceType=resource_type)
 resource_ids = response['resourceIdentifiers']
 
 for resource_id in resource_ids:
-    print(resource_id['resourceId'])
+    print(resource_type, ':', resource_id['resourceId'])
